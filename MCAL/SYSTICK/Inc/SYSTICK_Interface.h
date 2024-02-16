@@ -1,0 +1,56 @@
+#ifndef SYSTICK_INTERFACE
+#define SYSTICK_INTERFACE
+
+#include <stdint.h>
+#define AHB_TICK_TIME        1f
+#define AHB_BY8_TICK_TIME   0.125f
+
+#define CSR_COUNTFLAG  16
+#define CSR_CLKSOURCE  2
+#define CSR_TICKINT    1
+#define CSR_ENABLE     0
+
+typedef enum
+{
+    DISABLE_SYSTICK_EXCEPTION = 0,/**< DISABLE_SYSTICK_EXCEPTION */
+    ENABLE_SYSTICK_EXCEPTION      /**< ENABLE_SYSTICK_EXCEPTION */
+
+} SYSTICK_EXCEPTION_t;
+
+
+typedef enum {
+	SYSTICK_CLOCK_AHB_DIVIDEDBY8=0,
+	SYSTICK_CLOCK_AHB_DIRECT
+}SYSTICK_CLOCK_t;
+
+
+typedef enum
+{
+    SYSTICK_AHB_BY8 = 0,/**< SYSTICK_AHB_BY8 */
+    SYSTICK_AHB         /**< SYSTICK_AHB */
+
+} SYSTICK_CLK_SOURCE_t;
+
+
+typedef struct
+{
+    SYSTICK_EXCEPTION_t Exception;
+    SYSTICK_CLK_SOURCE_t CLK;
+
+} SYSTICK_CONFIG_t;
+
+
+
+SYSTICK_CONFIG_t SYSTICK_TIMER_CONFIG =
+{
+  .Exception = DISABLE_SYSTICK_EXCEPTION , .CLK = SYSTICK_AHB_BY8
+};
+
+
+ERRORS_t   SYSTICK_Delayms(uint32_t Copy_u32TimeInMillis) ;
+
+
+ERRORS_t SYSTICK_Delayus(uint32_t Copy_u32TimeInMicroSeconds) ;
+
+
+#endif
