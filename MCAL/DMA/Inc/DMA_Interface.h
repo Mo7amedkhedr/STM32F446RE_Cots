@@ -111,6 +111,13 @@ typedef enum
 
 } DMA_PRIORITY_t;
 
+
+typedef enum
+{
+    DMA_DOUBLE_BUFFER_DIS = 0, /* Double Buffer Mode Disable */
+    DMA_DOUBLE_BUFFER_EN = 1   /* Double Buffer Mode Enable */
+} DMA_DOUBLE_BUFFER_t;
+
 /**
  * @brief : Enum that holds Options for Memory Data Width
  * @enum  : @DMA_MEM_WIDTH_t

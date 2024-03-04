@@ -10,14 +10,14 @@
 
 /*************************    AHB1 peripheral BASE Address     **********************************/
 
-#define GPIOA_BASE_ADDRESS                ox40020000U
-#define GPIOB_BASE_ADDRESS                ox40020400U
-#define GPIOC_BASE_ADDRESS                ox40020800U
-#define GPIOD_BASE_ADDRESS                ox40020C00U
-#define GPIOE_BASE_ADDRESS                ox40021000U
-#define GPIOF_BASE_ADDRESS                ox40021400U
-#define GPIOG_BASE_ADDRESS                ox40021800U
-#define GPIOH_BASE_ADDRESS                ox40021C00U
+#define GPIOA_BASE_ADDRESS                0x40020000U
+#define GPIOB_BASE_ADDRESS                0x40020400U
+#define GPIOC_BASE_ADDRESS                0x40020800U
+#define GPIOD_BASE_ADDRESS                0x40020C00U
+#define GPIOE_BASE_ADDRESS                0x40021000U
+#define GPIOF_BASE_ADDRESS                0x40021400U
+#define GPIOG_BASE_ADDRESS                0x40021800U
+#define GPIOH_BASE_ADDRESS                0x40021C00U
 
 #define RCC_BASE_ADDRESS                  0x40023800U
 
@@ -376,7 +376,108 @@ typedef enum
 } DMA_FIFO_CONTROL_BITS_t;
 
 
+/* --------------------------------------------------------------------------------------------------- */
+/* ------------------------------- USART REGISTERS Definition Structure ------------------------------ */
+/* --------------------------------------------------------------------------------------------------- */
 
+typedef struct
+{
+	volatile uint16_t SR; /* USART Status Register */
+	uint16_t RESERVED0;
+	volatile uint16_t DR; /* USART Data Register */
+	uint16_t RESERVED1;
+	volatile uint16_t BRR; /* USART Baud Rate Register */
+	uint16_t RESERVED2;
+	volatile uint16_t CR1; /* USART Control Register 1 */
+	uint16_t RESERVED3;
+	volatile uint16_t CR2; /* USART Control Register 2 */
+	uint16_t RESERVED4;
+	volatile uint16_t CR3; /* USART Control Register 3 */
+	uint16_t RESERVED5;
+	volatile uint16_t GTPR; /* USART Guard Time and Prescaler Register */
+	uint16_t RESERVED6;
+
+} USART_Reg_t;
+
+
+/* ------------------------------------------------------------------------------------------- */
+/* ------------------------------- USART Peripheral Definition ------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+#define USART1 ((USART_Reg_t *)USART1_BASE_ADDRESS)
+#define USART2 ((USART_Reg_t *)USART2_BASE_ADDRESS)
+#define USART3 ((USART_Reg_t *)USART3_BASE_ADDRESS)
+#define UART4 ((USART_Reg_t *)UART4_BASE_ADDRESS)
+#define UART5 ((USART_Reg_t *)UART5_BASE_ADDRESS)
+#define USART6 ((USART_Reg_t *)USART6_BASE_ADDRESS)
+
+/* ------------------------------------------------------------------------------------ */
+/* ------------------------------- USART REGISTERS Bits ------------------------------- */
+/* ------------------------------------------------------------------------------------ */
+
+typedef enum
+{
+	USART_DIV_FRACTION = 0, /* fraction of USARTDIV */
+	USART_DIV_MANTISSA = 4  /* mantissa of USARTDIV */
+
+} USART_BaudRateBits_t;
+
+typedef enum
+{
+	USART_SBK = 0,	   /* Send Break */
+	USART_RWU = 1,	   /* Receiver Wakeup */
+	USART_RE = 2,		   /* Receiver Enable */
+	USART_TE = 3,		   /* Transmitter Enable */
+	USART_IDLEIE = 4,	   /* IDLE Interrupt Enable */
+	USART_RXNEIE = 5,	   /* RXNE Interrupt Enable */
+	USART_TCIE = 6, /* Transmission Complete Interrupt Enable */
+	USART_TXEIE = 7,	   /* TXE Interrupt Enable */
+	USART_PEIE = 8,	   /* PE Interrupt Enable */
+	USART_PS = 9,		   /* Parity Selection */
+	USART_PCE = 10,	   /* Parity Control Enable */
+	USART_WAKE = 11,	   /* Wakeup Method */
+	USART_M = 12,		   /* Word Length */
+	USART_UE = 13,	   /* USART Enable */
+	USART_OVER8 = 15,	   /* Oversampling Mode */
+
+} USART_CR1_BITS_t;
+
+typedef enum
+{
+	USART_ADD = 0,	/* Address of the USART node */
+	USART_LBDL = 5,	/* LIN Break Detection Length */
+	USART_LBDIE = 6,	/* LIN Break Detection Interrupt Enable */
+	USART_LBCL = 8,	/* Last Bit Clock Pulse */
+	USART_CPHA = 9,	/* Clock Phase */
+	USART_CPOL = 10,	/* Clock Polarity */
+	USART_CLKEN = 11, /* Clock Enable */
+	USART_STOP = 12,	/* STOP bits */
+	USART_LINEN = 14, /* LIN mode enable */
+
+} USART_CR2_BITS_t;
+
+typedef enum
+{
+	USART_EIE = 0,	/* Error Interrupt Enable */
+	USART_IREN = 1,	/* IrDA mode Enable */
+	USART_IRLP = 2,	/* IrDA Low-Power */
+	USART_HDSEL = 3,	/* Half-Duplex Selection */
+	USART_NACK = 4,	/* Smartcard NACK enable */
+	USART_SCEN = 5,	/* Smartcard mode enable */
+	USART_DMAR = 6,	/* DMA Enable Receiver */
+	USART_DMAT = 7,	/* DMA Enable Transmitter */
+	USART_RTSE = 8,	/* RTS Enable */
+	USART_CTSE = 9,	/* CTS Enable */
+	USART_CTSIE = 10, /* CTS Interrupt Enable */
+	USART_ONEBIT = 11 /* One sample bit method enable */
+
+} USART_CR3_BITS_t;
+
+typedef enum
+{
+	USART_PSC = 0, /* Prescaler value */
+	USART_GT = 8	 /* Guard time value */
+
+} USART_GTPR_BITS_t;
 
 
 
