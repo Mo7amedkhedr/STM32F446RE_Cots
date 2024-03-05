@@ -69,7 +69,9 @@ typedef enum  {  NOK , OK ,Null_Pointer,InvalidPORTPIN,DMA_OK,DMA_NOK,DMA_WRONG_
 
 }Error_State_t;
 #define NULL ((void *)0)
-
+#define GET_BIT(REG,BIT)  ((REG>>BIT)&1)
+#define SET_BIT(REG,BIT)  (REG|=(1<<BIT))
+#define CLR_BIT(REG,BIT)  (REG&=(~(1<<BIT)))
 
 
 #endif
